@@ -11,7 +11,8 @@ public class FirstVerticle extends AbstractVerticle {
                     httpServerRequest.response()
                             .end("verticle server deployed");
                 })
-                .listen(8800,httpServerAsyncResult -> {
+                .listen(config().getInteger("server.port",8810),  // Reads from a configuration file
+                        httpServerAsyncResult -> {
                     if(httpServerAsyncResult.succeeded())
                         future.complete();
                     else
